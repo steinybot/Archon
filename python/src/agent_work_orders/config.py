@@ -36,7 +36,7 @@ class AgentWorkOrdersConfig:
     SERVICE_DISCOVERY_MODE: str = os.getenv("SERVICE_DISCOVERY_MODE", "local")
 
     # CORS configuration
-    CORS_ORIGINS: str = os.getenv("CORS_ORIGINS", "http://localhost:3737,http://host.docker.internal:3737,*")
+    CORS_ORIGINS: str = os.getenv("CORS_ORIGINS", "http://localhost:3737,http://host.containers.internal:3737,*")
 
     # Claude CLI flags configuration
     # --verbose: Required when using --print with --output-format=stream-json

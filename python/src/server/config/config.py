@@ -98,7 +98,7 @@ def validate_supabase_url(url: str) -> bool:
         raise ConfigurationError("Supabase URL cannot be empty")
 
     parsed = urlparse(url)
-    # Allow HTTP for local development (host.docker.internal or localhost)
+    # Allow HTTP for local development (host.containers.internal or localhost)
     if parsed.scheme not in ("http", "https"):
         raise ConfigurationError("Supabase URL must use HTTP or HTTPS")
 
@@ -107,7 +107,7 @@ def validate_supabase_url(url: str) -> bool:
         hostname = parsed.hostname or ""
 
         # Check for exact localhost and Docker internal hosts (security: prevent subdomain bypass)
-        local_hosts = ["localhost", "127.0.0.1", "host.docker.internal"]
+        local_hosts = ["localhost", "127.0.0.1", "host.containers.internal"]
         if hostname in local_hosts or hostname.endswith(".localhost"):
             return True
 

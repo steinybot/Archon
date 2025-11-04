@@ -37,8 +37,6 @@ services:
       - ./python/src:/app/src # Mount source code for hot reload
       - ./python/tests:/app/tests # Mount tests for UI test execution
       - ./migration:/app/migration # Mount migration files for version tracking
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     command:
       [
         "python",
@@ -94,9 +92,6 @@ services:
     depends_on:
       archon-server:
         condition: service_healthy
-      
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     healthcheck:
       test:
         [
@@ -185,7 +180,7 @@ services:
       - ./python/src/agent_work_orders:/app/src/agent_work_orders # Hot reload for agent work orders
       - /tmp/agent-work-orders:/tmp/agent-work-orders # Temp files
     extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - "host.containers.internal:host-gateway"
     healthcheck:
       test:
         [

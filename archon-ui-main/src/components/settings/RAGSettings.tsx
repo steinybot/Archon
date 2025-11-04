@@ -108,7 +108,7 @@ const isProviderKey = (value: unknown): value is ProviderKey =>
   typeof value === 'string' && ['openai', 'google', 'openrouter', 'ollama', 'anthropic', 'grok'].includes(value);
 
 // Default base URL for Ollama instances when not explicitly configured
-const DEFAULT_OLLAMA_URL = 'http://host.docker.internal:11434/v1';
+const DEFAULT_OLLAMA_URL = 'http://host.containers.internal:11434/v1';
 
 const PROVIDER_CREDENTIAL_KEYS = [
   'OPENAI_API_KEY',
@@ -207,11 +207,11 @@ export const RAGSettings = ({
   // Instance configurations
   const [llmInstanceConfig, setLLMInstanceConfig] = useState({
     name: '',
-    url: ragSettings.LLM_BASE_URL || 'http://host.docker.internal:11434/v1'
+    url: ragSettings.LLM_BASE_URL || 'http://host.containers.internal:11434/v1'
   });
   const [embeddingInstanceConfig, setEmbeddingInstanceConfig] = useState({
     name: '', 
-    url: ragSettings.OLLAMA_EMBEDDING_URL || 'http://host.docker.internal:11434/v1'
+    url: ragSettings.OLLAMA_EMBEDDING_URL || 'http://host.containers.internal:11434/v1'
   });
 
   // Update instance configs when ragSettings change (after loading from database)
@@ -2169,7 +2169,7 @@ const manualTestConnection = async (
                       });
                     }
                   }}
-                  placeholder="http://host.docker.internal:11434/v1"
+                  placeholder="http://host.containers.internal:11434/v1"
                 />
                 
                 {/* Convenience checkbox for single host setup */}
@@ -2251,7 +2251,7 @@ const manualTestConnection = async (
                   label="Instance URL"
                   value={embeddingInstanceConfig.url}
                   onChange={(e) => setEmbeddingInstanceConfig({...embeddingInstanceConfig, url: e.target.value})}
-                  placeholder="http://host.docker.internal:11434/v1"
+                  placeholder="http://host.containers.internal:11434/v1"
                 />
               </div>
               
